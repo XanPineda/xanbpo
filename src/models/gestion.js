@@ -44,7 +44,7 @@ const Gestion = sequelize.define(
             defaultValue: DataTypes.NOW,
         },
         observaciones: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.TEXT,
             allowNull: true,
         },
         recordingUrl: {

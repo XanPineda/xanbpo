@@ -1,6 +1,7 @@
 const request = require("supertest");
 const app = require("../app");
-const { sequelize, Gestion } = require("../models");
+const sequelize = require("../config/database");
+const Gestion = require("../models/gestion");
 
 describe("Pruebas E2E del módulo Gestiones", () => {
 
@@ -17,7 +18,7 @@ describe("Pruebas E2E del módulo Gestiones", () => {
 
     // Crear gestión
     
-    test("POST /api/gestiones -> debe crear una gestión", async () => {
+    test("POST /api/v1/gestiones -> debe crear una gestión", async () => {
         const payload = {
             clienteDocumento: "12345",
             clienteNombre: "Juan Pérez",
@@ -33,7 +34,7 @@ describe("Pruebas E2E del módulo Gestiones", () => {
         };
 
         const res = await request(app)
-            .post("/api/gestiones")
+            .post("/api/v1/gestiones")
             .send(payload);
 
         expect(res.status).toBe(201);
@@ -44,8 +45,8 @@ describe("Pruebas E2E del módulo Gestiones", () => {
 
     // Obtener gestión por ID
 
-    test("GET /api/gestiones/:id → debe obtener una gestión", async () => {
-        const res = await request(app).get(`/api/gestiones/${idCreado}`);
+    test("GET /api/v1/gestiones/:id → debe obtener una gestión", async () => {
+        const res = await request(app).get(`/api/v1/gestiones/${idCreado}`);
 
         expect(res.status).toBe(200);
         expect(res.body.id).toBe(idCreado);
@@ -53,8 +54,8 @@ describe("Pruebas E2E del módulo Gestiones", () => {
 
     // Listar gestiones con filtros
 
-    test("GET /api/gestiones -> debe listar gestiones", async () => {
-        const res = await request(app).get("/api/gestiones?page=1&limit=10");
+    test("GET /api/v1/gestiones -> debe listar gestiones", async () => {
+        const res = await request(app).get("/api/v1/gestiones?page=1&limit=10");
 
         expect(res.status).toBe(200);
         expect(res.body.total).toBeGreaterThan(0);
@@ -63,7 +64,7 @@ describe("Pruebas E2E del módulo Gestiones", () => {
 
     // Actualizar gestión
 
-    test("PUT /api/gestiones/:id -> debe actualizar la gestión", async () => {
+    test("PUT /api/v1/gestiones/:id -> debe actualizar la gestión", async () => {
         const update = {
             clienteNombre: "Juan Actualizado",
             tipificacion: "Información",
@@ -71,7 +72,7 @@ describe("Pruebas E2E del módulo Gestiones", () => {
         };
 
         const res = await request(app)
-            .put(`/api/gestiones/${idCreado}`)
+            .put(`/api/v1/gestiones/${idCreado}`)
             .send(update);
 
         expect(res.status).toBe(200);
@@ -80,15 +81,15 @@ describe("Pruebas E2E del módulo Gestiones", () => {
 
     // Eliminar gestión
 
-    test("DELETE /api/gestiones/:id -> debe eliminar la gestión", async () => {
-        const res = await request(app).delete(`/api/gestiones/${idCreado}`);
+    test("DELETE /api/v1/gestiones/:id -> debe eliminar la gestión", async () => {
+        const res = await request(app).delete(`/api/v1/gestiones/${idCreado}`);
 
         expect(res.status).toBe(200);
     });
 
     // Confirmar eliminación
-    test("GET /api/gestiones/:id -> después de borrar debe retornar 404", async () => {
-        const res = await request(app).get(`/api/gestiones/${idCreado}`);
+    test("GET /api/v1/gestiones/:id -> después de borrar debe retornar 404", async () => {
+        const res = await request(app).get(`/api/v1/gestiones/${idCreado}`);
 
         expect(res.status).toBe(404);
     });

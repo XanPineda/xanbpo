@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const gestionRoutes = require("./gestion.routes");
+const gestionRoutes = require("./gestionRoutes");
 
 router.use("/gestiones", gestionRoutes);
 

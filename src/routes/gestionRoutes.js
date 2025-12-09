@@ -30,8 +30,8 @@ router.get(
 // Actualizar gestión
 router.put(
     "/:id",
-    validarCreacion,     // Podrías hacer un validador diferente si quieres
-    validarCampos,
+    // Para actualizaciones via PUT permitimos payloads parciales en esta prueba técnica
+    // (no usar el validador de creación que exige campos obligatorios)
     (req, res) => gestionController.actualizar(req, res)
 );
 

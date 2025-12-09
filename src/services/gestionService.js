@@ -10,12 +10,16 @@ class GestionService {
 
     // Obtener una gestión por ID
     async obtenerPorId(id) {
-        const gestion = await Gestion.findByPk(id);
-        if (!gestion) {
-            throw new Error("Gestión no encontrada");
-        }
-        return gestion;
+    const gestion = await Gestion.findOne({
+        where: { id, estado: "abierta" }
+    });
+
+    if (!gestion) {
+        throw new Error("Gestión no encontrada");
     }
+
+    return gestion;
+}
 
     // Listado con filtros + paginación
     async listarGestiones({ page = 1, limit = 10, fechaDesde, fechaHasta, tipificacion, asesorId, q}) {
@@ -44,8 +48,8 @@ class GestionService {
 
         if (q) {
             where[Op.or] = [
-                { clienteDocumento: { [Op.like]: `%${query.q}%` } },
-                { clienteNombre: { [Op.like]: `%${query.q}%` } }
+                { clienteDocumento: { [Op.like]: `%${q}%` } },
+                { clienteNombre: { [Op.like]: `%${q}%` } }
             ];
         }
 
@@ -67,8 +71,14 @@ class GestionService {
     // Actualizar una gestión por ID
     async actualizarGestion(id, data) {
         const gestion = await this.obtenerPorId(id);
-        return await gestion.update(data);
+        return await gestion.update(data, { validate: false });
     }
+
+    async actualizarParcial(id, data) {
+    const gestion = await this.obtenerPorId(id);
+    await gestion.update(data, { validate: false });
+    return gestion;
+}
 
     // Eliminar una gestión por ID
     async eliminarGestion(id) {

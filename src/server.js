@@ -10,7 +10,7 @@ sequelize
   .then(() => {
     console.log("✓ Conexión a base de datos exitosa");
 
-    return sequelize.sync({ alter: true });
+    return sequelize.sync({ force: true });
   })
   .then(() => {
     console.log("✓ Base de datos sincronizada");
