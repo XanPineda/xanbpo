@@ -1,4 +1,4 @@
-# Sistema de Gestión de PQRS -- Backend (Node.js + Express + MySQL)
+# Sistema de BPO -- Backend (Node.js + Express + MySQL)
 
 Este proyecto implementa un sistema backend para un Contact Center en el que
 se registran y se consultan gestiones realizadas por asesores a clientes.\
