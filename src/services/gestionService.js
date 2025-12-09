@@ -66,8 +66,13 @@ class GestionService {
     // Eliminar una gestión por ID
     async eliminarGestion(id) {
         const gestion = await this.obtenerPorId(id);
-        await gestion.destroy();
-        return { mensaje: "Gestión eliminada correctamente" };
+
+        await gestion.update({ estado: "cerrada" });
+
+        return {
+            mensaje: "Gestión cerrada (borrado lógico)",
+            id
+        };
     }
 }
 
