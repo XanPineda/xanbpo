@@ -16,6 +16,12 @@ paginación eficiente y pruebas E2E.
 -   Arquitectura MVC + Services
 -   Validación de datos con middleware personalizado
 
+## 📊 Cómo crear la Base de Datos desde Workbench
+
+A continuación se encuentra el código en lenguaje SQL para poder crear la base de datos del proyecto
+
+CREATE DATABASE bpo_prueba CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 ## 📂 Estructura del proyecto
 
     src/
