@@ -6,6 +6,6 @@ const gestionRoutes = require("./routes/gestionRoutes");
 app.use(express.json());
 
 // Rutas del módulo gestiones
-app.use("/api/gestiones", gestionRoutes);
+app.use("/api/v1/gestiones", gestionRoutes);
 
 module.exports = app;

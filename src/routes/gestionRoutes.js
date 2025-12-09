@@ -35,6 +35,12 @@ router.put(
     (req, res) => gestionController.actualizar(req, res)
 );
 
+router.patch(
+    "/:id",
+    gestionController.actualizarParcial
+);
+
+
 // Eliminar gestión
 router.delete(
     "/:id",
