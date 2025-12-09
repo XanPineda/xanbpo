@@ -42,6 +42,13 @@ class GestionService {
             where.asesorId = asesorId;
         }
 
+        if (query.q) {
+            where[Op.or] = [
+                { clienteDocumento: { [Op.like]: `%${query.q}%` } },
+                { clienteNombre: { [Op.like]: `%${query.q}%` } }
+            ];
+        }
+
         const { rows, count } = await Gestion.findAndCountAll({
             where,
             limit,
