@@ -28,11 +28,13 @@ CREATE DATABASE bpo_prueba CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
      ├── controllers/
      ├── services/
      ├── routes/
-     ├── middleware/
+     ├── middlewares/
      ├── models/
      ├── config/
+     ├── validators/
      ├── tests/
      │    └── gestion.e2e.test.js
+     ├── server.js
      └── app.js
 
 ## ⚙️ Requisitos previos
@@ -40,12 +42,13 @@ CREATE DATABASE bpo_prueba CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 -   Node.js 18+
 -   MySQL o MariaDB
 -   npm o yarn
+-   Librerías de Jest y Supertest
 
 ## 🔧 Instalación
 
 ``` bash
 git clone https://github.com/XanPineda/xanbpo.git
-cd nombre-proyecto
+cd xanbpo
 npm install
 cp .env.example .env
 ```
@@ -53,8 +56,7 @@ cp .env.example .env
 ## ▶️ Ejecutar el servidor
 
 ``` bash
-npm run dev
-npm start
+node src/server.js
 ```
 
 ## 🧪 Pruebas
