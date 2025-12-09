@@ -18,7 +18,7 @@ class GestionService {
     }
 
     // Listado con filtros + paginación
-    async listarGestiones({ page = 1, limit = 10, fechaDesde, fechaHasta, tipificacion, asesorId }) {
+    async listarGestiones({ page = 1, limit = 10, fechaDesde, fechaHasta, tipificacion, asesorId, q}) {
 
         const offset = (page - 1) * limit;
 
@@ -42,7 +42,7 @@ class GestionService {
             where.asesorId = asesorId;
         }
 
-        if (query.q) {
+        if (q) {
             where[Op.or] = [
                 { clienteDocumento: { [Op.like]: `%${query.q}%` } },
                 { clienteNombre: { [Op.like]: `%${query.q}%` } }

@@ -16,7 +16,7 @@ sequelize
     console.log("✓ Base de datos sincronizada");
 
     app.listen(PORT, () => {
-      console.log(`✓ Servidor iniciado en http://localhost:${PORT}/api/gestiones`);
+      console.log(`✓ Servidor iniciado en http://localhost:${PORT}/api/v1/gestiones`);
     });
   })
   .catch((err) => console.error("❌ Error al iniciar:", err));
