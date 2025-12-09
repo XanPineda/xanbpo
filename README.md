@@ -21,21 +21,30 @@ paginación eficiente y pruebas E2E.
 A continuación se encuentra el código en lenguaje SQL para poder crear la base de datos del proyecto
 
 CREATE DATABASE bpo_prueba CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'bpo_user'@'%' IDENTIFIED BY 'bpo_pass';
+GRANT ALL PRIVILEGES ON bpo_prueba.* TO 'bpo_user'@'%';
+FLUSH PRIVILEGES;
 
 ## 📂 Estructura del proyecto
 
-    src/
-     ├── controllers/
-     ├── services/
-     ├── routes/
-     ├── middlewares/
-     ├── models/
-     ├── config/
-     ├── validators/
-     ├── tests/
-     │    └── gestion.e2e.test.js
-     ├── server.js
-     └── app.js
+    ├─ node_modules
+    ├─ package.json
+    ├─ package-lock.json
+    ├─ .env.example
+    ├─ .gitignore
+    ├─ README.md
+    └─ src/
+        ├── controllers/
+        ├── services/
+        ├── routes/
+        ├── middlewares/
+        ├── models/
+        ├── config/
+        ├── validators/
+        ├── tests/
+        │    └── gestion.e2e.test.js
+        ├── server.js
+        └── app.js
 
 ## ⚙️ Requisitos previos
 
